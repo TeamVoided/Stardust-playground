@@ -24,6 +24,12 @@ repositories {
         }
     }
     maven("https://api.modrinth.com/maven") { content { includeGroup("maven.modrinth") } }
+    maven("https://maven.blamejared.com/")
+    maven("https://mvn.devos.one/snapshots/")
+    maven("https://mvn.devos.one/releases/")
+    maven("https://maven.theillusivec4.top/")
+    maven("https://maven.jamieswhiteshirt.com/libs-release")
+    maven("https://maven.ladysnake.org/releases")
     mavenCentral()
 }
 
@@ -50,6 +56,29 @@ dependencies {
     // Testing
     modImplementation(libs.creative.works)
     modImplementation(libs.imguimc)
+
+    modImplementation("maven.modrinth:lodestonelib:${"1.21.1"}-${properties["lodestone_version"]}-fabric")
+    //For this you also need the following
+    modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${properties["cca_version"]}")
+    modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${properties["cca_version"]}")
+    modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-world:${properties["cca_version"]}")
+
+    modImplementation("dev.emi:trinkets:${properties["trinkets_version"]}")
+    val list = listOf(
+        "accessors",
+        "base",
+        "blocks",
+        "core",
+        "data",
+        "extensions",
+        "lazy_registration",
+        "models",
+        "model_data"
+    )
+    for (module in list) {
+        modImplementation("io.github.fabricators_of_create.Porting-Lib:$module:${properties["port_lib_version"]}")
+    }
+    //modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}")
 }
 val username = "vDev"
 val uuid: String? = null
